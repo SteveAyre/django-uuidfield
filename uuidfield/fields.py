@@ -51,8 +51,8 @@ class UUIDField(Field):
         self.auto = auto
         self.version = version
         self.hyphenate = hyphenate
-        # We store UUIDs in hex format, which is fixed at 32 characters.
-        kwargs['max_length'] = 32
+        # We store UUIDs in hex format, which is fixed at 32 characters (36 if hyphenated)
+        kwargs['max_length'] = 36 if hyphenate else 32
         if auto:
             # Do not let the user edit UUIDs if they are auto-assigned.
             kwargs['editable'] = False
